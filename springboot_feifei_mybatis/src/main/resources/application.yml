@@ -1,0 +1,15 @@
+mybatis:
+  type-aliases-package: com.atguigu.domain # 指定mybatis别名包
+  mapper-locations: classpath:com/atguigu/dao/*.xml # 指定xml映射文件路径
+logging:
+  level:
+    com.atguigu.dao: debug # 配置日志
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 18081
+

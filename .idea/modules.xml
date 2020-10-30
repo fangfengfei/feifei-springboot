@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/feifei-springboot.iml" filepath="$PROJECT_DIR$/.idea/feifei-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_feifei01/springboot_feifei01.iml" filepath="$PROJECT_DIR$/springboot_feifei01/springboot_feifei01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_feifei02/springboot_feifei02.iml" filepath="$PROJECT_DIR$/springboot_feifei02/springboot_feifei02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_feifei_mybatis/springboot_feifei_mybatis.iml" filepath="$PROJECT_DIR$/springboot_feifei_mybatis/springboot_feifei_mybatis.iml" />
+    </modules>
+  </component>
+</project>

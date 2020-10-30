@@ -1,0 +1,24 @@
+server:
+    port: 8088
+user:
+    username: 我带你们打
+    password: wdnmd
+    nicknames:
+        - feifei
+        - xiaoran
+        - fener
+        - boer
+    mobiles:
+           - num: 123
+             brand: 华为
+
+           - num: 456
+             brand: 小米
+
+person:
+  name: zhangsan
+  age: 18
+
+map:
+  key1: value1
+  key2: value2
