@@ -2,19 +2,24 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot_feifei02" />
         <module name="springboot_feifei01" />
+        <module name="springdata_feifei01" />
         <module name="springboot_feifei_mybatis" />
+        <module name="springdata_data_jpa" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springboot_feifei01" target="1.8" />
       <module name="springboot_feifei02" target="1.8" />
       <module name="springboot_feifei_mybatis" target="1.8" />
+      <module name="springdata_data_jpa" target="1.8" />
+      <module name="springdata_feifei01" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

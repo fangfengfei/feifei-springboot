@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+      http://www.springframework.org/schema/data/jpa
+      http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!--一：配置c3p0数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/springdatajpa?characterEncoding=utf8"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <!--二：配置spring data jpa的核心 LocalContainerEntityManagerFactoryBean-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <!--1:注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--2:指定包扫描，扫描com.atguigu.domain，扫描所有实体类，映射数据库表-->
+        <property name="packagesToScan" value="com.atguigu.domain"></property>
+        <!--3:指定持久化的供应商，指定hibernate为持久化的供应商-->
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
+        </property>
+        <!--4:指定JPA供应商的适配器，用来设置hibernate中的参数设置
+            generateDdl:true:表示没有数据库表，自动创建数据库表
+            showSql:true:表示控制台会显示hibernate底层生成的sql语句，用于开发测试
+            database:MYSQL：表示指定底层操作的数据库是MYSQL
+            databasePlatform：org.hibernate.dialect.MySQL5Dialect，方言的作用用于查询
+
+
+        -->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"></property>
+                <property name="showSql" value="true"></property>
+                <property name="database" value="MYSQL"></property>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"></property>
+            </bean>
+        </property>
+        <!--5:JPA的方言，指定hibenrate为JPA的方言-->
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
+        </property>
+    </bean>
+
+    <!--三：扫描所有实现JpaRepository接口的接口-->
+    <jpa:repositories base-package="com.atguigu.dao" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"></jpa:repositories>
+
+    <!--四：配置事务管理器，属于JPA的事务管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+    </bean>
+
+
+    <!--组件的扫描，但是如果使用spring整合junit测试，该行代码可以不写-->
+    <context:component-scan base-package="com.atguigu"></context:component-scan>
+</beans>
